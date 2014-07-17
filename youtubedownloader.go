@@ -60,6 +60,7 @@ func Download(link string, filename string) {
 	defer resp.Body.Close()
 	// Creating output file
 	out, err := os.Create(filename)
+	defer out.Close()
 	HandleFatal(err)
 	fmt.Printf("Downloading \"%s\"...", filename)
 	n, err := io.Copy(out, resp.Body)
